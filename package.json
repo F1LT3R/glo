@@ -21,7 +21,8 @@
     "start": "node ./bin/glo.js"
   },
   "config":{
-    "htmlDir":"html",
-    "postDir":"posts"
+    "htmlDir":"html-output",
+    "postDir":"posts",
+    "less_stylesheet":"./template/less/markdown-css/markdown-default.less"
   }
 }
