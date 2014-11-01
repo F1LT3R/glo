@@ -1,0 +1,20 @@
+{
+  "name": "glo",
+  "description": "simple markdown based blog system",
+  "keywords":"blog node markdown",
+  "homepage":"f1lt3r.com",
+  "license" : "MIT",
+  "author": "Alistair MacDonald <al@pwn.io>",
+  "version":"0.1.0",
+
+  "dependencies": {
+    "minimatch": "*",
+    "recursive-readdir": "*",
+    "marked": "*"
+  },
+  "engine": "node >= 0.4.1",
+  "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/f1lt3r/glo.git"
+  }
+}
