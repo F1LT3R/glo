@@ -9,7 +9,8 @@
   "dependencies": {
     "minimatch": "*",
     "recursive-readdir": "*",
-    "marked": "*"
+    "marked": "*",
+    "less": "*"
   },
   "engine": "node >= 0.4.1",
   "repository" :{

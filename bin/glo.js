@@ -41,17 +41,19 @@ var posts = config.postDir
     
     postList.forEach(function(post){
       fs.readFile(post.file, 'utf8', function (err,data) {
-      if (err) {
-        return console.log(err);
-      }
-      // console.log(marked(data));
-        fs.writeFile(html+'/posts/'+post.title+'.html', marked(data), function(err) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log("The file '"+post.title+"' was saved!");
-        }
-    }); 
+        if (err) { return console.log(err); }
+      
+        var page = '';
+
+        page+=marked(data);
+
+        fs.writeFile(html+'/posts/'+post.title+'.html', page, function(err) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log("The file '"+post.title+"' was saved!");
+            }
+         }); 
       });
     });
   }
