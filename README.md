@@ -29,7 +29,7 @@ After running _npm start_, the terminal output should look something like this:
 
 ```bash
 > ~/htdocs/glo ⮀ ⭠ master ⮀ npm start  
-> glo@0.1.0 start /Users/F1LT3R/Documents/htdocs/glo  
+> glo@0.1.0 start /Users/[username]/Documents/htdocs/glo  
 > node ./bin/glo.js  
 > The file 'Happy Halloween!' was saved!  
 > The file 'Hello World!' was saved!
