@@ -6,15 +6,21 @@
   "license" : "MIT",
   "author": "Alistair MacDonald <al@pwn.io>",
   "version":"0.1.0",
-
   "dependencies": {
     "minimatch": "*",
     "recursive-readdir": "*",
     "marked": "*"
   },
   "engine": "node >= 0.4.1",
-  "repository" :
-  { "type" : "git"
-  , "url" : "http://github.com/f1lt3r/glo.git"
+  "repository" :{
+    "type" : "git",
+    "url" : "http://github.com/f1lt3r/glo.git"
+  },
+  "scripts": {
+    "start": "node ./bin/glo.js"
+  },
+  "config":{
+    "htmlDir":"html",
+    "postDir":"posts"
   }
 }

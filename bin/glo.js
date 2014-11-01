@@ -4,11 +4,12 @@ var fs = require('fs')
   , recursive = require('recursive-readdir')
   , minimatch = require('minimatch')
   , marked = require('marked')
+  , config = require('../package').config
   ;
 
 // GLOBAL VARS
-var posts = '../posts/'
-  , html  = '../html/'
+var posts = config.postDir
+  , html  = config.htmlDir
   ;
 
   // GET MARKDOWN FILES
@@ -26,23 +27,13 @@ var posts = '../posts/'
 
     files.forEach(function(file){
 
-      var pre   = 'posts/'
-        , post  = '/post.md'
-        , start = file.indexOf(pre)
-        , end   = file.indexOf(post)
-        , path  = file.substr(start+pre.length, end-post.length-1)
-        , info  = path.split('/')
-        , year  = info[0]
-        , month = info[1]
-        , day   = info[2]
-        , title = info[3]
-        ;
+      var info  = file.split('/');
      
       postList.push({
-          year  : year
-        , month : month
-        , day   : day
-        , title : title
+          year  : info[1]
+        , month : info[2]
+        , day   : info[3]
+        , title : info[4]
         , file  : file
       });
 
@@ -54,7 +45,7 @@ var posts = '../posts/'
         return console.log(err);
       }
       // console.log(marked(data));
-        fs.writeFile(html+'/'+post.title+'.html', marked(data), function(err) {
+        fs.writeFile(html+'/posts/'+post.title+'.html', marked(data), function(err) {
         if(err) {
             console.log(err);
         } else {
