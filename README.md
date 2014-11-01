@@ -2,7 +2,7 @@
 
 **glo** is a simple blog engine, using node, markdown and less
 
-> **glo** compiles your _markdown_ and _less_ into static HTML files that can be easily cached on the server.
+**glo** compiles your _markdown_ and _less_ into static HTML files that can be easily cached on the server.
 
 ##Usage
 
@@ -43,7 +43,7 @@ ls html-output/posts/
 
 Open these files in your browser to see the markdown converted to HTML with the LESS styles converted to CSS.
 
-If you clone **glo** to the _Document Root_ of your webserver, you can point your browser to http://localhost/glo/html-output/posts to see the output.
+If you clone **glo** to the _Document Root_ of your webserver, you can point your browser to [http://localhost/glo/html-output/posts](http://localhost/glo/html-output/posts) to see the output.
 
 ##Licence
 
