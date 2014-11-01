@@ -43,7 +43,9 @@ ls html-output/posts/
 
 Open these files in your browser to see the markdown converted to HTML with the LESS styles converted to CSS.
 
-If you clone **glo** to the _Document Root_ of your webserver, you can point your browser to [http://localhost/glo/html-output/posts](http://localhost/glo/html-output/posts) to see the output.
+If you clone glo to the Document Root of your webserver, you can point your browser to [http://localhost/glo/html-output/posts](http://localhost/glo/html-output/posts) to see the output.
+
+**Please note:** Cloning a repo to your Document Root may be a security risk.
 
 ##Licence
 
