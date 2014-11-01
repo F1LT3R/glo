@@ -2,14 +2,16 @@
 
 **glo** is a simple blog engine, using node, markdown and less
 
-**glo** compiles your _markdown_ and _less_ into static HTML files that can be easily cached on the server.
+> **glo** compiles your _markdown_ and _less_ into static HTML files that can be easily cached on the server.
 
 ##Usage
 
 ###Installation
 
-    git clone https://github.com/F1LT3R/glo.git
-    cd glo
+```bash
+git clone https://github.com/F1LT3R/glo.git
+cd glo
+```
 
 Posts are stored as markdown files in the **posts/** directory.
 
@@ -17,23 +19,31 @@ Posts are stored as markdown files in the **posts/** directory.
 
 HTML is compiled to the **html-output/** directory.
 
-    // Start compiling the HTML
-    npm start
+To start compiling the HTML:
 
+```bash
+npm start
+```
 
-The terminal output should look like this:
+After running _npm start_, the terminal output should look something like this:
 
-> ~/htdocs/glo ⮀ ⭠ master ⮀ npm start
-> glo@0.1.0 start /Users/F1LT3R/Documents/htdocs/glo
-> node ./bin/glo.js
-> The file 'Happy Halloween!' was saved!
+```bash
+> ~/htdocs/glo ⮀ ⭠ master ⮀ npm start  
+> glo@0.1.0 start /Users/F1LT3R/Documents/htdocs/glo  
+> node ./bin/glo.js  
+> The file 'Happy Halloween!' was saved!  
 > The file 'Hello World!' was saved!
+```
 
-To see the HTML output:
+###Viewing The Output
 
-    ls html-output/posts/
+```bash
+ls html-output/posts/
+```
 
 Open these files in your browser to see the markdown converted to HTML with the LESS styles converted to CSS.
+
+If you clone **glo** to the _Document Root_ of your webserver, you can point your browser to http://localhost/glo/html-output/posts to see the output.
 
 ##Licence
 
