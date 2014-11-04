@@ -2,7 +2,7 @@
   "name": "glo",
   "description": "simple markdown based blog system",
   "keywords":"blog node markdown",
-  "homepage":"f1lt3r.com",
+  "homepage":"http://f1lt3r.com",
   "license" : "MIT",
   "author": "Alistair MacDonald <al@pwn.io>",
   "version":"0.1.0",
@@ -10,7 +10,9 @@
     "minimatch": "*",
     "recursive-readdir": "*",
     "marked": "*",
-    "less": "*"
+    "less": "*",
+    "node-terminal": "*",
+    "bluebird": "*"
   },
   "engine": "node >= 0.4.1",
   "repository" :{
