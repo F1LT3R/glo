@@ -23,8 +23,8 @@
     "start": "node ./bin/glo.js"
   },
   "config":{
-    "htmlDir":"html-output",
-    "postDir":"posts",
+    "html_output_dir":"./html-output",
+    "posts_dir":"./posts",
     "less_stylesheet":"./template/less/markdown-css/markdown-default.less"
   }
 }
