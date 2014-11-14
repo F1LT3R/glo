@@ -12,6 +12,7 @@
     "marked": "*",
     "less": "*",
     "node-terminal": "*",
+    "underscore": "*",
     "bluebird": "*"
   },
   "engine": "node >= 0.4.1",

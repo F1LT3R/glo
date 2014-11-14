@@ -1,7 +1,7 @@
 
 // REQUIRE
 var //Promise   = require("bluebird")
-    Promise   = require("q")
+    Promise   = require("bluebird")
   , fs        = require('fs')
   , _         = require('underscore')
   , minimatch = require('minimatch')
@@ -17,19 +17,26 @@ var //Promise   = require("bluebird")
 var posts_dir       = config.posts_dir
   , html_output_dir = config.html_output_dir
   , less_stylesheet = config.less_stylesheet
-  , posts_ext       = "*.md"
+  , extension       = "*.md"
   ;
 
 
 
-  // Global Error Handling (TBD: this may be v. ugly)
-  function error (err) {
-    terminal.color('red').write(err);
-    return new Error(err);
+  // Global resolve/reject (for debugging)
+  function rej (err) {
+    return new Promise(function (resolve, reject){
+      terminal.color('red').write(err);
+      // console.log(err);
+      return reject(new Error(err));
+    })
   }
 
-  function valid (data) {
-    return data;
+  function res (data) {
+    return new Promise(function (resolve, reject){
+      // terminal.color('green').write(data);
+      // console.log(data);
+      resolve(data);
+    });
   }
 
 
@@ -96,43 +103,11 @@ var posts_dir       = config.posts_dir
   // Returns an array filtered by extension type
   function filter (ary, ext) {
     return ary.filter(minimatch
-      .filter(ext || posts_ext, {matchBase: true}));
+      .filter(ext || extension, {matchBase: true}));
   }
 
 
-  // Returns [{yr, mo, day, title, file}] for every post
-  function getPostsMeta (files) {
-
-    var postMeta = []
-      , info
-      ;
-
-    files.forEach(function (file) {
-
-      info  = file.split('/');
-     
-      postMeta.push({
-          year  : info[1]
-        , month : info[2]
-        , day   : info[3]
-        , title : info[4]
-        , file  : file
-      });
-
-    });
-
-    return postMeta;
-  };
   
-
-
-  // Reads a file as UTF8 and returns data
-  function readFile (file) {
-    return fs.readFileSync(file, 'utf8', function (err, data) {
-      return data;
-    });
-  }
-
 
 
 
@@ -184,76 +159,75 @@ var posts_dir       = config.posts_dir
 
 
 
-  function renderLessToCSS (lessStyles) {
-    // console.log(lessStyles);
-    // return less.render(lessStyles);
-    return less.render(lessStyles);
-  }
-
-
-// less.render(less_data, function (err, css){
-//         css_styles = '<style>'+css+'</style>\n\n';    
-
-  function getLessStyleBlock () {
-
-    // styleBlock = '<style></style>';
-
-    var css = readFile(less_stylesheet);
-
-    console.log(css);
-
-    less.render(css, function(err, css){
-      // console.log(css);
+  function renderLessToCSS (less_css) {
+    return new Promise(function (resolve, reject) {
+      less.render(less_css, function (err, vanilla_css) {
+        if(err !== null) return reject(err);
+        resolve(vanilla_css);
+      });
     });
-
-    // less.render(css, {}).then(function(data){
-    //   return data;
-    // }, error)
-
-    //less.render(css, {})
-
-
-    // Promise
-    // .resolve(readFile(less_stylesheet))
-    // .then(less.render)
-    // .then(function(data){
-    //   console.log(data);
-    // })
-    // .catch(error)
-    // ;
-
-    // if (err) { return console.log(err); }
-
-    // var css_styles;
-    // less.render(data, function(e, css){
-    //   css_styles = '<style>'+css+'</style>\n\n';  
-    // });
-    // });
-
-    // return styleBlock;
   }
 
+  function getStyleBlock (less_stylesheet) {
+    // return new Promise(function (resolve, reject) {
+      // resolve(readFile(less_stylesheet));
+        // resolve('<style>'+renderLessToCSS(css)+'</style>');
+    // });
+  }
+
+
+  // Reads a file as UTF8 and returns data
+  function readFile (file) {
+    return new Promise(function (resolve, reject) {
+      fs.readFile(file, 'utf8', function (err, data) {
+        if(err!==null) return reject(err);
+        resolve(data);
+      });
+
+    });
+  }
 
 
 
   function renderBlog (dir) {  
 
-    var styleBlock = getLessStyleBlock();
+    // getStyleBlock(less_stylesheet).then(reject, resolve);
+    // var styleBlock = readFile(less_stylesheet)
+    //   .then(renderLessToCSS)
+    //   .then(function(data){
+    //     // console.log(data);
+    //     return data;
+    //   }, _rej);
+
     // console.log(styleBlock);
 
-    // Promise.resolve(listDir(dir))
-    // .then(collectFiles)
-    // .then(flatten)
-    // .then(filter)
-    // .then(getPostsMeta)
-    // // .then(exportPostsToHTML)
-    // .then(function (postList) {
-    //   console.log("%j", postList);
-    // })
-    // .catch(error);
-    // ;
-    // 
-    // 
+    Promise.resolve(listDir(dir))
+    .then(collectFiles)
+    .then(flatten)
+    .then(filter)
+    .then(getPostsMeta)
+    // .then(exportPostsToHTML)
+    .then(function (postList) {
+      console.log("%j", postList);
+    })
+    .catch(rej);
+    ;
+    
+    
   }
 
   renderBlog(posts_dir);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
